@@ -1,9 +1,28 @@
 package musicpref.comparators;
 
-public class GenreComparator {
+import java.util.Comparator;
+import musicpref.*;
 
-    public GenreComparator() {
-        // TODO Auto-generated constructor stub
+/**
+ * Comparator to compare the genre parameter of two given Song objects.
+ * 
+ * @author Alec Alderman (ama2106)
+ * @author Julian Davila (jaydee1)
+ * @author Matthew Scanland (mks2752)
+ * @version 2015.11.16
+ */
+public class GenreComparator implements Comparator<Song> {
+
+    /**
+     * Compare the given songs' genres and return a numerical result.
+     * 
+     * @param s1 - first Song object for comparison
+     * @param s2 - second Song object for comparison
+     * @return an integer result based on the comparison
+     */
+    @Override
+    public int compare(Song s1, Song s2) {
+        return s1.getGenre().compareTo(s2.getGenre());
     }
 
 }
