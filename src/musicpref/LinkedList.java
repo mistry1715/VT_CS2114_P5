@@ -33,13 +33,7 @@ public class LinkedList<T>
      */
     public void add(T anEntry)
     {
-        Node<T> newNode = new Node<T>(lastNode, anEntry, null);
-        lastNode = newNode;
-        if (isEmpty())
-        {
-            firstNode = lastNode;
-        }
-        size++;
+        add(size, anEntry);
     }
 
     /**
@@ -94,6 +88,22 @@ public class LinkedList<T>
     }
 
     /**
+     * gets the data at an index
+     * 
+     * @param index
+     *            index to return data
+     * @return data from the node at specified index
+     */
+    public T get(int index)
+    {
+        if (index < 0 || index >= size)
+        {
+            throw new IndexOutOfBoundsException();
+        }
+        return getNodeAt(index).getData();
+    }
+
+    /**
      * checks for emptiness
      * 
      * @return true if empty, false if not empty
@@ -111,6 +121,18 @@ public class LinkedList<T>
     public int size()
     {
         return size;
+    }
+
+    /**
+     * Checks if the list contains the given object
+     *
+     * @param anEntry
+     *            the object to check for
+     * @return true if it contains the object, false if not contained
+     */
+    public boolean contains(T anEntry)
+    {
+        return findIndexOf(anEntry) != -1;
     }
 
     /**
@@ -147,11 +169,25 @@ public class LinkedList<T>
             throw new IndexOutOfBoundsException();
         }
         // get the previous and next nodes to link together, return data
-        Node<T> previousNode = getNodeAt(index - 1);
-        Node<T> nextNode = previousNode.getNextNode().getNextNode();
-        T data = nextNode.getPreviousNode().getData();
-        previousNode.setNextNode(nextNode);
-        nextNode.setPreviousNode(nextNode);
+        Node<T> removed = getNodeAt(index);
+        T data = removed.getData();
+        if (index == 0)
+        {
+            firstNode = firstNode.getNextNode();
+            removed.setNextNode(null);
+            firstNode.setPreviousNode(null);
+        }
+        else if (index == size - 1)
+        {
+            lastNode = lastNode.getPreviousNode();
+            removed.setPreviousNode(null);
+            lastNode.setNextNode(null);
+        }
+        else
+        {
+            removed.getPreviousNode().setNextNode(removed.getNextNode());
+            removed.getNextNode().setPreviousNode(removed.getPreviousNode());
+        }
         size--;
         return data;
     }
@@ -169,7 +205,7 @@ public class LinkedList<T>
         T data = null;
         int index = findIndexOf(anEntry);
         // index is valid
-        if (index > 0 && index < size)
+        if (index >= 0 && index < size)
         {
             data = remove(index);
         }
@@ -185,7 +221,6 @@ public class LinkedList<T>
      */
     private int findIndexOf(T anEntry)
     {
-        int index = -1;
         Node<T> node = firstNode;
         for (int i = 0; i < size; i++)
         {
@@ -193,8 +228,9 @@ public class LinkedList<T>
             {
                 return i;
             }
+            node = node.getNextNode();
         }
-        return index;
+        return -1;
     }
 
     /**
@@ -212,7 +248,7 @@ public class LinkedList<T>
      * 
      * @return new LinkedListIterator()
      */
-    public LinkedListIterator iterator()
+    public Iterator<T> iterator()
     {
         return new LinkedListIterator();
     }
@@ -336,7 +372,7 @@ public class LinkedList<T>
         @Override
         public boolean hasNext()
         {
-            return (position < size - 1);
+            return (position < size);
         }
 
         /**
@@ -365,10 +401,14 @@ public class LinkedList<T>
          */
         public void remove()
         {
-            if (calledNext)
+            if (!calledNext)
             {
-                LinkedList.this.remove(position);
+                throw new IllegalStateException();
+            }
+            else
+            {
                 calledNext = false;
+                LinkedList.this.remove(position);
             }
         }
     }
