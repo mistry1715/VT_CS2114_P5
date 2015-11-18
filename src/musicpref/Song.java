@@ -9,7 +9,7 @@ package musicpref;
  * @version 2015.11.16
  */
 public class Song {
-    // public LinkedList<Song> songs;
+    // protected static LinkedList<Song> songs;
     private String title;
     private String artist;
     private String genre;
@@ -23,8 +23,15 @@ public class Song {
      * @param artist - the song's artist
      * @param genre - the song's genre
      * @param year - the song's release year
+     * @throws IllegalArgumentException if an invalid title, artist, genre, or
+     *         year is given (i.e. an empty string or a negative integer)
      */
     public Song(String title, String artist, String genre, int year) {
+        if (title == "" || artist == "" || genre == "" || year < 0) {
+            throw new IllegalArgumentException(
+                    "Empty string or negative integer given.");
+        }
+
         this.title = title;
         this.artist = artist;
         this.genre = genre;
@@ -50,7 +57,22 @@ public class Song {
      */
     @Override
     public boolean equals(Object obj) {
-        return false; // TODO
+        if (obj == null) {
+            return false;
+        }
+
+        if (obj == this) {
+            return true;
+        }
+
+        Song other;
+        if (obj.getClass() == this.getClass()) {
+            other = (Song) obj;
+            return other.title == this.title && other.artist == this.artist
+                    && other.genre == this.genre && other.year == this.year;
+        }
+
+        return false;
     }
 
     /**
