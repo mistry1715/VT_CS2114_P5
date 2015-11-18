@@ -24,7 +24,8 @@ public class Student {
      * @param major - student's major
      * @param region - student's region
      * @param hobby - student's hobby
-     * @throws IllegalArgumentException if an invalid name is given (i.e. an empty string value)
+     * @throws IllegalArgumentException if an invalid name is given (i.e. an
+     *         empty string value)
      */
     public Student(String name, MAJOR major, REGION region, HOBBY hobby) {
         if (name == "") {
@@ -34,7 +35,6 @@ public class Student {
         this.major = major;
         this.region = region;
         this.hobby = hobby;
-        // TODO
     }
 
     /**
@@ -81,16 +81,13 @@ public class Student {
      */
     @Override
     public String toString() {
-        String result = "[";
-
         StringBuilder builder = new StringBuilder();
+        builder.append("[");
         builder.append(name + "," + major + "," + region + "," + hobby);
-
-        return result;
-
-        // TODO Will appending the enum print the right value?
+        builder.append("]");
+        return builder.toString();
     }
-    
+
     /**
      * Return the student's name.
      * 

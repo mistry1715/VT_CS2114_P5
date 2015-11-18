@@ -36,7 +36,6 @@ public class Song {
         this.artist = artist;
         this.genre = genre;
         this.year = year;
-        // TODO
     }
 
     /**
@@ -82,12 +81,11 @@ public class Song {
      */
     @Override
     public String toString() {
-        String result = "[";
-
         StringBuilder builder = new StringBuilder();
+        builder.append("[");
         builder.append(title + "," + artist + "," + genre + "," + year);
-
-        return result;
+        builder.append("]");
+        return builder.toString();
     }
 
     /**
