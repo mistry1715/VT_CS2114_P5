@@ -12,6 +12,7 @@ import musicpref.enumeration.*;
  */
 public class Student {
     // public LinkedList<Student> students;
+    private String name;
     private MAJOR major;
     private REGION region;
     private HOBBY hobby;
@@ -24,7 +25,8 @@ public class Student {
      * @param region - student's region
      * @param hobby - student's hobby
      */
-    public Student(MAJOR major, REGION region, HOBBY hobby) {
+    public Student(String name, MAJOR major, REGION region, HOBBY hobby) {
+        this.name = name;
         this.major = major;
         this.region = region;
         this.hobby = hobby;
@@ -50,6 +52,24 @@ public class Student {
     @Override
     public boolean equals(Object obj) {
         return false; // TODO
+    }
+
+    /**
+     * Convert the Student object to a string of values within a set of
+     * brackets.
+     * 
+     * @return the calling Student object in the form of a string
+     */
+    @Override
+    public String toString() {
+        String result = "[";
+
+        StringBuilder builder = new StringBuilder();
+        builder.append(name + "," + major + "," + region + "," + hobby);
+
+        return result;
+
+        // TODO Will appending the enum print the right value?
     }
 
     /**

@@ -54,6 +54,21 @@ public class Song {
     }
 
     /**
+     * Convert the Song object to a string of values within a set of brackets.
+     * 
+     * @return the calling Song object in the form of a string
+     */
+    @Override
+    public String toString() {
+        String result = "[";
+
+        StringBuilder builder = new StringBuilder();
+        builder.append(title + "," + artist + "," + genre + "," + year);
+
+        return result;
+    }
+
+    /**
      * Return the song's title.
      * 
      * @return the song's title
