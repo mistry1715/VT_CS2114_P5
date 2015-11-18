@@ -11,7 +11,7 @@ import musicpref.enumeration.*;
  * @version 2015.11.16
  */
 public class Student {
-    // public LinkedList<Student> students;
+    // protected static LinkedList<Student> students;
     private String name;
     private MAJOR major;
     private REGION region;
@@ -24,8 +24,12 @@ public class Student {
      * @param major - student's major
      * @param region - student's region
      * @param hobby - student's hobby
+     * @throws IllegalArgumentException if an invalid name is given (i.e. an empty string value)
      */
     public Student(String name, MAJOR major, REGION region, HOBBY hobby) {
+        if (name == "") {
+            throw new IllegalArgumentException("Empty string given.");
+        }
         this.name = name;
         this.major = major;
         this.region = region;
@@ -51,7 +55,22 @@ public class Student {
      */
     @Override
     public boolean equals(Object obj) {
-        return false; // TODO
+        if (obj == null) {
+            return false;
+        }
+
+        if (obj == this) {
+            return true;
+        }
+
+        Student other;
+        if (obj.getClass() == this.getClass()) {
+            other = (Student) obj;
+            return other.name == this.name && other.major == this.major
+                    && other.region == this.region && other.hobby == this.hobby;
+        }
+
+        return false;
     }
 
     /**
@@ -70,6 +89,15 @@ public class Student {
         return result;
 
         // TODO Will appending the enum print the right value?
+    }
+    
+    /**
+     * Return the student's name.
+     * 
+     * @return the student's name
+     */
+    public String getName() {
+        return name;
     }
 
     /**
