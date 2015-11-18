@@ -197,6 +197,9 @@ public class LinkedList<T>
         return index;
     }
 
+    /**
+     * clears the list
+     */
     public void clear()
     {
         firstNode = null;
