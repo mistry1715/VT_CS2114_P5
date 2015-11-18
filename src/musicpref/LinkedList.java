@@ -3,7 +3,7 @@ package musicpref;
 import java.util.Iterator;
 
 /**
- * Linked List
+ * Doubly Linked List
  * 
  * @author Matthew Scanland (mks2752)
  * @version 11.16.2015
