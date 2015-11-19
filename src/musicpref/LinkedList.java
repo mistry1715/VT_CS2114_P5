@@ -1,6 +1,7 @@
 package musicpref;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 /**
  * Doubly Linked List
@@ -49,7 +50,8 @@ public class LinkedList<T>
     {
         if (index < 0 || index > size)
         {
-            throw new IndexOutOfBoundsException();
+            throw new IndexOutOfBoundsException(
+                    "Cannot add to specified index");
         }
         Node<T> newNode = new Node<T>(anEntry);
         Node<T> previousNode = null;
@@ -98,7 +100,8 @@ public class LinkedList<T>
     {
         if (index < 0 || index >= size)
         {
-            throw new IndexOutOfBoundsException();
+            throw new IndexOutOfBoundsException(
+                    "Cannot get element at this index.");
         }
         return getNodeAt(index).getData();
     }
@@ -166,7 +169,8 @@ public class LinkedList<T>
         // if trying to remove above the size or below 0
         if (index < 0 || index >= size)
         {
-            throw new IndexOutOfBoundsException();
+            throw new IndexOutOfBoundsException(
+                    "Cannot remove element at this index.");
         }
         // get the previous and next nodes to link together, return data
         Node<T> removed = getNodeAt(index);
@@ -361,7 +365,7 @@ public class LinkedList<T>
         {
             currentNode = firstNode;
             calledNext = false;
-            position = -1;
+            position = 0;
         }
 
         /**
@@ -393,6 +397,11 @@ public class LinkedList<T>
                 position++;
                 calledNext = true;
             }
+            else
+            {
+                throw new NoSuchElementException(
+                        "Next in Iterator has no next element.");
+            }
             return data;
         }
 
@@ -403,12 +412,14 @@ public class LinkedList<T>
         {
             if (!calledNext)
             {
-                throw new IllegalStateException();
+                throw new IllegalStateException(
+                        "Unable to remove element in Iterator.");
             }
             else
             {
                 calledNext = false;
-                LinkedList.this.remove(position);
+                LinkedList.this.remove(position - 1);
+                position--;
             }
         }
     }

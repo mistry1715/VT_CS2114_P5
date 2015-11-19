@@ -4,6 +4,7 @@
 package musicpref;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 /**
  * @author Matthew Scanland (mks2752)
@@ -31,6 +32,8 @@ public class LinkedListTest extends student.TestCase
         list.add("h");
         list.add("i");
         assertTrue(list.get(0).equals("h"));
+        assertTrue(list.get(1).equals("i"));
+        list.add("h");
         assertTrue(list.get(1).equals("i"));
     }
 
@@ -69,6 +72,9 @@ public class LinkedListTest extends student.TestCase
     {
         list.add("h");
         assertTrue(list.get(0).equals("h"));
+        list.add("e");
+        list.remove("h");
+        assertTrue(list.get(0).equals("e"));
 
         Exception thrown = null;
 
@@ -106,6 +112,8 @@ public class LinkedListTest extends student.TestCase
         list.add(2, "l");
         list.add(0, "h");
         assertEquals(list.size(), 4);
+        assertTrue(list.remove(2).equals("e"));
+        assertEquals(list.size(), 3);
     }
 
     /**
@@ -117,6 +125,8 @@ public class LinkedListTest extends student.TestCase
         list.add("e");
         assertTrue(list.contains("e"));
         assertFalse(list.contains("o"));
+        list.add("l");
+        assertTrue(list.contains("l"));
     }
 
     /**
@@ -130,7 +140,9 @@ public class LinkedListTest extends student.TestCase
         list.add("l");
         assertTrue(list.remove(1).equals("e"));
         assertTrue(list.remove(0).equals("h"));
+        list.add("o");
         assertTrue(list.remove(1).equals("l"));
+        assertTrue(list.remove(1).equals("o"));
     }
 
     /**
@@ -175,6 +187,9 @@ public class LinkedListTest extends student.TestCase
 
         Exception thrown = null;
         iterator.remove();
+        iterator.next();
+        iterator.remove();
+        assertEquals(list.size(), 3);
 
         try
         {
@@ -189,8 +204,25 @@ public class LinkedListTest extends student.TestCase
         assertTrue(thrown instanceof IllegalStateException);
 
         iterator.next();
-        iterator.next();
         assertTrue(iterator.next().equals("o"));
-        assertNull(iterator.next());
+
+        thrown = null;
+        try
+        {
+            iterator.next();
+        }
+        catch (Exception e)
+        {
+            thrown = e;
+        }
+        assertNotNull(thrown);
+        assertTrue(thrown instanceof NoSuchElementException);
+
+        iterator = list.iterator();
+        assertTrue(iterator.next().equals("h"));
+        assertTrue(iterator.next().equals("l"));
+        iterator.remove();
+        assertEquals(list.size(), 2);
+        assertTrue(iterator.next().equals("o"));
     }
 }
