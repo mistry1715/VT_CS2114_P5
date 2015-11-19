@@ -45,6 +45,7 @@ public class Song {
      * 
      * @param obj - the object to compare with the calling object
      * @return the comparison result
+     * @throws IllegalArgumentException if an invalid object is passed
      */
     public int compareTo(Object obj) {
         if (obj == null) {
