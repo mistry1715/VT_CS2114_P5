@@ -11,8 +11,12 @@ import musicpref.enumeration.*;
  * @version 2015.11.16
  */
 public class Student {
+<<<<<<< HEAD
     // protected static LinkedList<Student> students;
     private String name;
+=======
+    public static LinkedList<Student> students = new LinkedList<>();
+>>>>>>> 465a2184f7f2c53b54b5e5e07c69409e0473ba9e
     private MAJOR major;
     private REGION region;
     private HOBBY hobby;

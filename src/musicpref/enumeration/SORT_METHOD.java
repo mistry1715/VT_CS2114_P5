@@ -15,5 +15,6 @@ public enum SORT_METHOD {
     TITLE,
     REGION,
     HOBBY,
-    MAJOR;
+    MAJOR,
+    UNSORTED;
 }

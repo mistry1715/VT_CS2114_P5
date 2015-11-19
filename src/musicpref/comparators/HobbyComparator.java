@@ -13,6 +13,11 @@ import musicpref.*;
  */
 public class HobbyComparator implements Comparator<Student> {
 
+	public HobbyComparator()
+	{
+		
+	}
+	
     /**
      * Compare the given students' hobbies and return a numerical result.
      * 
