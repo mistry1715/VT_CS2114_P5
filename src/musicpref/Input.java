@@ -53,6 +53,7 @@ public class Input
 		String line = null;
 		LinkedList<Glyph> glyphs = new LinkedList<>();
 		
+		scan.nextLine();
 		while (scan.hasNextLine())
 		{
 			line = scan.nextLine();

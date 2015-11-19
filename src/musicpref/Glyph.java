@@ -16,6 +16,12 @@ public class Glyph
     {
         this.song = song;
         sortedBy = SORT_METHOD.UNSORTED;
+        
+        liked = new LinkedList<>();
+        heard = new LinkedList<>();
+        ignored = new LinkedList<>();
+        likedByCat = new int[5];
+        heardByCat = new int[5];
     }
     
     public void makeGUIGlpyh()
