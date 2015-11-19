@@ -1,5 +1,7 @@
 package musicpref;
 
+import musicpref.comparators.*;
+
 /**
  * TODO
  * 
@@ -45,7 +47,31 @@ public class Song {
      * @return the comparison result
      */
     public int compareTo(Object obj) {
-        return 0; // TODO
+        if (obj == null) {
+            throw new IllegalArgumentException("Object passed is null.");
+        }
+        
+        if (obj.getClass() != this.getClass()) {
+            throw new IllegalArgumentException("Object passed is not a Song.");
+        }
+        
+        Song other = (Song) obj;
+        
+        int diff = new TitleComparator().compare(this, other);
+        
+        if (diff == 0) {
+            diff = new ArtistComparator().compare(this, other);
+        }
+        
+        if (diff == 0) {
+            diff = new GenreComparator().compare(this, other);
+        }
+        
+        if (diff == 0) {
+            diff = new YearComparator().compare(this, other);
+        }
+        
+        return diff;
     }
 
     /**

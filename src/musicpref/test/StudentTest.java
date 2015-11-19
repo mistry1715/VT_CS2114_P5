@@ -75,16 +75,20 @@ public class StudentTest extends student.TestCase {
      * Test the getter methods.
      */
     public void testGetters() {
-        // assertEquals("", student1.getName());
-        // assertEquals("", student2.getName());
-        // assertEquals("", student3.getName());
+        assertEquals("Banjo", student1.getName());
+        assertEquals("Kazooie", student2.getName());
+        assertEquals("Mumbo", student3.getName());
 
-        // assertEquals(, student1.getMajor());
-        // assertEquals(, student2.getMajor());
-        // assertEquals(, student3.getMajor());
+        assertEquals(MAJOR.CS, student1.getMajor());
+        assertEquals(MAJOR.EGR, student2.getMajor());
+        assertEquals(MAJOR.MATH, student3.getMajor());
 
-        // test region
+        assertEquals(REGION.NE, student1.getRegion());
+        assertEquals(REGION.OUT, student2.getRegion());
+        assertEquals(REGION.SE, student3.getRegion());
 
-        // test hobby
+        assertEquals(HOBBY.ART, student1.getHobby());
+        assertEquals(HOBBY.MUSIC, student2.getHobby());
+        assertEquals(HOBBY.READ, student3.getHobby());
     }
 }
