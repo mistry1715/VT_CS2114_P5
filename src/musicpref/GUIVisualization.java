@@ -21,9 +21,9 @@ public class GUIVisualization
 	private Button region;
 	private Button quit;
 	
-	protected static LinkedList<GUIGlyph> glyphs;
+	private LinkedList<GUIGlyph> glyphs;
 	
-    public GUIVisualization() 
+    public GUIVisualization(LinkedList<GUIGlyph> glyphs) 
     {
         window = new Window("Data Visualization ama2106 jaydee1 mks2752");
         position = 0;
@@ -60,6 +60,10 @@ public class GUIVisualization
         window.addButton(major, WindowSide.SOUTH);
         window.addButton(region, WindowSide.SOUTH);
         window.addButton(quit, WindowSide.SOUTH);
+        
+        this.glyphs = glyphs;
+        
+        sortedBy = SORT_METHOD.TITLE;
     }
 
 }

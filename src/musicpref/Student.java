@@ -11,7 +11,7 @@ import musicpref.enumeration.*;
  * @version 2015.11.16
  */
 public class Student {
-    // public LinkedList<Student> students;
+    public static LinkedList<Student> students = new LinkedList<>();
     private MAJOR major;
     private REGION region;
     private HOBBY hobby;
