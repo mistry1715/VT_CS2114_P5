@@ -11,13 +11,8 @@ import prj5.*;
  * @author Matthew Scanland (mks2752)
  * @version 2015.11.16
  */
-public class HobbyComparator implements Comparator<Student> {
-
-	public HobbyComparator()
-	{
-		
-	}
-	
+public class HobbyComparator implements Comparator<Student> 
+{
     /**
      * Compare the given students' hobbies and return a numerical result.
      * 
