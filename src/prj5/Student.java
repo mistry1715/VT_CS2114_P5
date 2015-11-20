@@ -13,9 +13,9 @@ import prj5.enumeration.*;
  */
 public class Student {
     public static LinkedList<Student> students = new LinkedList<>();
-    private MAJOR major;
-    private REGION region;
-    private HOBBY hobby;
+    private Major major;
+    private Region region;
+    private Hobby hobby;
 
     /**
      * Create a new Student object with the given MAJOR, REGION, and HOBBY
@@ -27,7 +27,7 @@ public class Student {
      * @throws IllegalArgumentException if an invalid name is given (i.e. an
      *         empty string value)
      */
-    public Student(MAJOR major, REGION region, HOBBY hobby) {
+    public Student(Major major, Region region, Hobby hobby) {
         this.major = major;
         this.region = region;
         this.hobby = hobby;
@@ -113,7 +113,7 @@ public class Student {
      * 
      * @return the student's major
      */
-    public MAJOR getMajor() {
+    public Major getMajor() {
         return major;
     }
 
@@ -122,7 +122,7 @@ public class Student {
      * 
      * @return the student's region
      */
-    public REGION getRegion() {
+    public Region getRegion() {
         return region;
     }
 
@@ -131,7 +131,7 @@ public class Student {
      * 
      * @return the student's hobby
      */
-    public HOBBY getHobby() {
+    public Hobby getHobby() {
         return hobby;
     }
 

@@ -3,13 +3,13 @@ package prj5;
 import CS2114.Button;
 import CS2114.Window;
 import CS2114.WindowSide;
-import prj5.enumeration.SORT_METHOD;
+import prj5.enumeration.SortMethod;
 
 public class GUIVisualization 
 {
 	private Window window;
 	private int position;
-	private SORT_METHOD sortedBy;
+	private SortMethod sortedBy;
 	private Button previous;
 	private Button next;
 	private Button title;
@@ -27,7 +27,7 @@ public class GUIVisualization
     {
         window = new Window("Data Visualization ama2106 jaydee1 mks2752");
         position = 0;
-        sortedBy = SORT_METHOD.UNSORTED;
+        sortedBy = SortMethod.UNSORTED;
         previous = new Button("<< Previous");
         next = new Button("Next >>");
         title = new Button("Sort By Song Title");
@@ -63,7 +63,7 @@ public class GUIVisualization
         
         this.glyphs = glyphs;
         
-        sortedBy = SORT_METHOD.TITLE;
+        sortedBy = SortMethod.TITLE;
     }
 
 }

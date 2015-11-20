@@ -1,13 +1,12 @@
 package prj5;
 
 import java.util.Comparator;
-import prj5.comparators.HobbyComparator;
-import prj5.comparators.MajorComparator;
-import prj5.enumeration.SORT_METHOD;
+import prj5.comparators.*;
+import prj5.enumeration.SortMethod;
 
 public class Glyph 
 {
-	private SORT_METHOD sortedBy;
+	private SortMethod sortedBy;
 	private LinkedList<Student> liked;
 	private LinkedList<Student> heard;
 	private LinkedList<Student> ignored;
@@ -18,7 +17,7 @@ public class Glyph
     public Glyph(Song song) 
     {
         this.song = song;
-        sortedBy = SORT_METHOD.UNSORTED;
+        sortedBy = SortMethod.UNSORTED;
         
         liked = new LinkedList<Student>();
         heard = new LinkedList<Student>();
@@ -42,11 +41,12 @@ public class Glyph
     	ignored.add(student);
     }
     
-    public void sortBy(SORT_METHOD sortMethod)
+    public void sortBy(SortMethod sortMethod)
     {
     	switch (sortMethod)
     	{
 	    	case REGION:
+	    	    sort(new RegionComparator());
 	    		break;
 	    	case MAJOR:
 	    		sort(new MajorComparator());

@@ -32,12 +32,12 @@ public class Input
         }
         else 
         {
-            readIn(new File("SongListTest2.csv"), new File("MusicSurveyDataTest2.csv"));
+            readIn(new File("SongList.csv"), new File("MusicSurveyData.csv"));
         }
         
         for (Glyph g : data)
         {
-            g.sortBy(SORT_METHOD.HOBBY);
+            g.sortBy(SortMethod.HOBBY);
             g.printOutData(); // Print the data.
             System.out.println(""); // Print an empty line.
         }
@@ -150,23 +150,23 @@ public class Input
                 // Start with data point 2
                 // Data 2 is major, 3 is region, and 4 is hobby
                 // Switch for all 3 data points.
-                HOBBY hobby = null;
-                REGION region = null;
-                MAJOR major = null;
+                Hobby hobby = null;
+                Region region = null;
+                Major major = null;
                 
                 switch (details[2])
                 {
                 case "Math or CMDA" :
-                    major = MAJOR.MATH;
+                    major = Major.MATH;
                     break;
                 case "Computer Science" :
-                    major = MAJOR.CS;
+                    major = Major.CS;
                     break;
                 case "Other Engineering" :
-                    major = MAJOR.EGR;
+                    major = Major.EGR;
                     break;
                 case "Other" :
-                    major = MAJOR.OTHER;
+                    major = Major.OTHER;
                     break;
                 default:
                     doNotCreate = true;
@@ -176,16 +176,16 @@ public class Input
                 switch (details[3])
                 {
                 case "Southeast" :
-                    region = REGION.SE;
+                    region = Region.SE;
                     break;
                 case "Northeast" :
-                    region = REGION.NE;
+                    region = Region.NE;
                     break;
                 case "United States (other than Southeast or Northwest)" :
-                    region = REGION.US;
+                    region = Region.US;
                     break;
                 case "Outside of United States" :
-                    region = REGION.OUT;
+                    region = Region.OUT;
                     break;
                 default:
                     doNotCreate = true;
@@ -195,16 +195,16 @@ public class Input
                 switch (details[4])
                 {
                 case "sports" :
-                    hobby = HOBBY.SPORTS;
+                    hobby = Hobby.SPORTS;
                     break;
                 case "music" :
-                    hobby = HOBBY.MUSIC;
+                    hobby = Hobby.MUSIC;
                     break;
                 case "reading" :
-                    hobby = HOBBY.READ;
+                    hobby = Hobby.READ;
                     break;
                 case "art" :
-                    hobby = HOBBY.ART;
+                    hobby = Hobby.ART;
                     break;
                 default:
                     doNotCreate = true;
@@ -227,11 +227,11 @@ public class Input
                         String sLiked = (liked < details.length) ? details[liked] : "";
                         if (!sHeard.equals("") && !sLiked.equals(""))
                         {
-                            if (sHeard.equals("Yes"));
+                            if (sHeard.equals("Yes"))
                             {
                                 glyph.addHeard(student);
                             }
-                            if (sLiked.equals("Yes"));
+                            if (sLiked.equals("Yes"))
                             {
                                 glyph.addLiked(student);
                             }
