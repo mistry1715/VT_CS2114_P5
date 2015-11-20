@@ -45,6 +45,10 @@ public class GlyphTest extends student.TestCase
         Student.students.add(new Student(MAJOR.CS, REGION.NE, HOBBY.READ));
         Student.students.add(new Student(MAJOR.CS, REGION.NE, HOBBY.SPORTS));
         Student.students.add(new Student(MAJOR.CS, REGION.NE, HOBBY.MUSIC));
+        Student.students.add(new Student(MAJOR.CS, REGION.NE, HOBBY.ART));
+        Student.students.add(new Student(MAJOR.CS, REGION.NE, HOBBY.READ));
+        Student.students.add(new Student(MAJOR.CS, REGION.NE, HOBBY.SPORTS));
+        Student.students.add(new Student(MAJOR.CS, REGION.NE, HOBBY.MUSIC));
     }
 
     /**
