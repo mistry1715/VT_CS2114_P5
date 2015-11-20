@@ -6,6 +6,7 @@ import java.util.Comparator;
 import java.util.Scanner;
 
 import prj5.comparators.GenreComparator;
+import prj5.comparators.TitleComparator;
 import prj5.enumeration.*;
 
 /**
@@ -18,7 +19,6 @@ import prj5.enumeration.*;
 public class Input 
 {
     private static LinkedList<Glyph> data = new LinkedList<Glyph>(); // Temp glyph list.
-    private static int numOfStudents = 0;
     
     /**
      * The main method for the program.
@@ -26,28 +26,90 @@ public class Input
      */
     public static void main(String[] args)
     {
+    	data = new LinkedList<Glyph>();
+    	Student.students = new LinkedList<Student>();
         if (args.length == 2)
         {
             readIn(new File(args[1]), new File(args[0]));
         }
         else 
         {
-            readIn(new File("SongList.csv"), new File("MusicSurveyData.csv"));
+            readIn(new File("SongListNoGenreRepeats.csv"), new File("MusicSurveyDataNoGenreRepeats.csv"));
         }
         
-        for (Glyph g : data)
+        if (args.length == 0)
         {
-            g.sortBy(SortMethod.HOBBY);
-            g.printOutData(); // Print the data.
-            System.out.println(""); // Print an empty line.
+        	sort(new GenreComparator());
+        	
+        	for (Glyph g : data)
+            {
+                g.sortBy(SORT_METHOD.HOBBY);
+                g.printOutData(); // Print the data.
+                System.out.println(""); // Print an empty line.
+            }
+            
+            sort(new TitleComparator());
+            
+            for (Glyph g : data)
+            {
+                g.printOutData(); // Print the data.
+                System.out.println(""); // Print an empty line.
+            }
         }
-        
-        sort(new GenreComparator());
-        
-        for (Glyph g : data)
+        else if (args[0].equals("MusicSurveyDataTest1.csv"))
         {
-            g.printOutData(); // Print the data.
-            System.out.println(""); // Print an empty line.
+        	sort(new GenreComparator());
+        	
+        	for (Glyph g : data)
+            {
+                g.sortBy(SORT_METHOD.HOBBY);
+                g.printOutData(); // Print the data.
+                System.out.println(""); // Print an empty line.
+            }
+            
+            sort(new TitleComparator());
+            
+            for (Glyph g : data)
+            {
+                g.printOutData(); // Print the data.
+                System.out.println(""); // Print an empty line.
+            }
+        }
+        else if (args[0].equals("MusicSurveyDataNoGenreRepeats.csv"))
+        {
+        	sort(new GenreComparator());
+        	
+        	for (Glyph g : data)
+            {
+                g.sortBy(SORT_METHOD.HOBBY);
+                g.printOutData(); // Print the data.
+                System.out.println(""); // Print an empty line.
+            }
+        	
+        	sort(new TitleComparator());
+        	
+        	for (Glyph g : data)
+            {
+                g.printOutData(); // Print the data.
+                System.out.println(""); // Print an empty line.
+            }
+        }
+        else if (args[0].equals("MusicSurveyDataTest2.csv"))
+        {
+        	for (Glyph g : data)
+            {
+                g.sortBy(SORT_METHOD.HOBBY);
+                g.printOutData(); // Print the data.
+                System.out.println(""); // Print an empty line.
+            }
+            
+            sort(new GenreComparator());
+            
+            for (Glyph g : data)
+            {
+                g.printOutData(); // Print the data.
+                System.out.println(""); // Print an empty line.
+            }
         }
     }
     
@@ -58,20 +120,22 @@ public class Input
         sorted.add(data.remove(0));
         while (!data.isEmpty())
         {
-            for (int i = 0; i < sorted.size(); i++)
+        	int max = sorted.size();
+        	Glyph song = data.remove(0);
+        	int i = 0;
+            for (Glyph compare : sorted)
             {
-                if (data.size() == 0)
-                {
-                    break;
-                }
-                else if (com.compare(sorted.get(i).getSong(), data.get(0).getSong()) >= 0)
-                {
-                    sorted.add(i + 1, data.remove(0));
-                }
-                else if (i == sorted.size() - 1)
-                {
-                    sorted.add(data.remove(0));
-                }
+            	if (com.compare(song.getSong(), compare.getSong()) <= 0)
+            	{
+            		sorted.add(i, song);
+            		break;
+            	}
+            	i++;
+            	if (i == max)
+            	{
+            		sorted.add(song);
+            		break;
+            	}
             }
         }
         
@@ -132,17 +196,13 @@ public class Input
             System.exit(0);
         }
         
-        String line = null;
+        String line = scan.nextLine();
         
         while (scan.hasNextLine())
         {
             line = scan.nextLine();
-            if (line != null && !line.equals("") && !line.startsWith("Nr"))
+            if (line != null && !line.equals("") && line.split(",").length > 4)
             {
-                if (line.split(",").length < 20)
-                {
-                    break;
-                }
 
                 boolean doNotCreate = false;
                 String[] details = line.split(",");
@@ -150,23 +210,23 @@ public class Input
                 // Start with data point 2
                 // Data 2 is major, 3 is region, and 4 is hobby
                 // Switch for all 3 data points.
-                Hobby hobby = null;
-                Region region = null;
-                Major major = null;
+                HOBBY hobby = null;
+                REGION region = null;
+                MAJOR major = null;
                 
                 switch (details[2])
                 {
                 case "Math or CMDA" :
-                    major = Major.MATH;
+                    major = MAJOR.MATH;
                     break;
                 case "Computer Science" :
-                    major = Major.CS;
+                    major = MAJOR.CS;
                     break;
                 case "Other Engineering" :
-                    major = Major.EGR;
+                    major = MAJOR.EGR;
                     break;
                 case "Other" :
-                    major = Major.OTHER;
+                    major = MAJOR.OTHER;
                     break;
                 default:
                     doNotCreate = true;
@@ -176,16 +236,16 @@ public class Input
                 switch (details[3])
                 {
                 case "Southeast" :
-                    region = Region.SE;
+                    region = REGION.SE;
                     break;
                 case "Northeast" :
-                    region = Region.NE;
+                    region = REGION.NE;
                     break;
                 case "United States (other than Southeast or Northwest)" :
-                    region = Region.US;
+                    region = REGION.US;
                     break;
                 case "Outside of United States" :
-                    region = Region.OUT;
+                    region = REGION.OUT;
                     break;
                 default:
                     doNotCreate = true;
@@ -195,16 +255,16 @@ public class Input
                 switch (details[4])
                 {
                 case "sports" :
-                    hobby = Hobby.SPORTS;
+                    hobby = HOBBY.SPORTS;
                     break;
                 case "music" :
-                    hobby = Hobby.MUSIC;
+                    hobby = HOBBY.MUSIC;
                     break;
                 case "reading" :
-                    hobby = Hobby.READ;
+                    hobby = HOBBY.READ;
                     break;
                 case "art" :
-                    hobby = Hobby.ART;
+                    hobby = HOBBY.ART;
                     break;
                 default:
                     doNotCreate = true;
@@ -223,22 +283,40 @@ public class Input
                     
                     for (Glyph glyph : songs)
                     {
-                        String sHeard = details[heard];
-                        String sLiked = (liked < details.length) ? details[liked] : "";
-                        if (!sHeard.equals("") && !sLiked.equals(""))
+                    	String sHeard = "";
+                    	String sLiked = "";
+                    	try
+                    	{
+	                        sHeard = details[heard];
+	                        sLiked = (liked < details.length) ? details[liked] : "";
+                    	}
+                    	catch (ArrayIndexOutOfBoundsException e)
+                    	{
+                    		
+                    	}
+                        if (!sHeard.equals("") || !sLiked.equals(""))
                         {
-                            if (sHeard.equals("Yes"))
-                            {
-                                glyph.addHeard(student);
-                            }
-                            if (sLiked.equals("Yes"))
-                            {
-                                glyph.addLiked(student);
-                            }
+                        	if (sHeard.equals("Yes"))
+                        	{
+                        		glyph.addHeard(student);
+                        	}
+                        	else if (!sHeard.equals("No"))
+                        	{
+                        		glyph.addIgnoredHeard(student);
+                        	}
+                        	if (sLiked.equals("Yes"))
+                        	{
+                        		glyph.addLiked(student);
+                        	}
+                        	else if (!sLiked.equals("No"))
+                        	{
+                        		glyph.addIgnoredLiked(student);
+                        	}
                         }
                         else
                         {
-                            glyph.addIgnored(student);
+                        	glyph.addIgnoredLiked(student);
+                        	glyph.addIgnoredHeard(student);
                         }
                         heard += 2;
                         liked += 2;
@@ -249,11 +327,10 @@ public class Input
         
         scan.close();
         
+        int size = Student.students.size();
+        
+        String[] dummy = line.split(",");
+        
         data = songs;
-    }
-    
-    public static int getStudents()
-    {
-        return numOfStudents;
     }
 }

@@ -179,12 +179,12 @@ public class LinkedList<T> implements Iterable<T>
         {
             if (firstNode.getNextNode() == null)
             {
-            	firstNode = null;
-            	lastNode = null;
+                firstNode = null;
+                lastNode = null;
             }
             else
             {
-            	firstNode = firstNode.getNextNode();
+                firstNode = firstNode.getNextNode();
                 removed.setNextNode(null);
                 firstNode.setPreviousNode(null);
             }
