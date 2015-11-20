@@ -31,7 +31,8 @@ public class Song {
      *         year is given (i.e. an empty string or a negative integer)
      */
     public Song(String title, String artist, String genre, int year) {
-        if (title == "" || artist == "" || genre == "" || year < 0) {
+        if (title.equals("") || artist.equals("") || genre.equals("") 
+                || year < 0) {
             throw new IllegalArgumentException(
                     "Empty string or negative integer given.");
         }

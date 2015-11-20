@@ -176,6 +176,8 @@ public class Glyph {
                 case MUSIC:
                     likedByCat[3]++;
                     break;
+                default:
+                    break;
             }
         }
 
@@ -192,6 +194,8 @@ public class Glyph {
                     break;
                 case MUSIC:
                     heardByCat[3]++;
+                    break;
+                default:
                     break;
             }
         }
@@ -213,6 +217,8 @@ public class Glyph {
                 case MUSIC:
                     totalByCat[3]++;
                     totalByCat[7]++;
+                    break;
+                default:
                     break;
             }
         }
@@ -247,6 +253,8 @@ public class Glyph {
                     break;
                 case MUSIC:
                     totalByCat[7]--;
+                    break;
+                default:
                     break;
             }
         }

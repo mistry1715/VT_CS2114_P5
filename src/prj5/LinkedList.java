@@ -11,6 +11,8 @@ import java.util.NoSuchElementException;
  * @author Julian Davila (jaydee1)
  * @author Matthew Scanland (mks2752)
  * @version 2015.11.16
+ * 
+ * @param <T> The generic object used in the list.
  */
 public class LinkedList<T> implements Iterable<T> {
     private Node<T> firstNode;
