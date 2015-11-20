@@ -4,7 +4,9 @@ import prj5.comparators.*;
 import prj5.enumeration.*;
 
 /**
- * TODO
+ * Each Student object contains the data given by a text file containing student
+ * responses. The responses regarding major, region, and hobby are stored by
+ * each object in the form of an enumeration to be used later while sorting.
  * 
  * @author Alec Alderman (ama2106)
  * @author Julian Davila (jaydee1)
@@ -12,10 +14,13 @@ import prj5.enumeration.*;
  * @version 2015.11.16
  */
 public class Student {
+    /**
+     * Static list of Student objects to be updated while sorting.
+     */
     public static LinkedList<Student> students = new LinkedList<>();
-    private MAJOR major;
-    private REGION region;
-    private HOBBY hobby;
+    private Major major;
+    private Region region;
+    private Hobby hobby;
 
     /**
      * Create a new Student object with the given MAJOR, REGION, and HOBBY
@@ -27,7 +32,7 @@ public class Student {
      * @throws IllegalArgumentException if an invalid name is given (i.e. an
      *         empty string value)
      */
-    public Student(MAJOR major, REGION region, HOBBY hobby) {
+    public Student(Major major, Region region, Hobby hobby) {
         this.major = major;
         this.region = region;
         this.hobby = hobby;
@@ -113,7 +118,7 @@ public class Student {
      * 
      * @return the student's major
      */
-    public MAJOR getMajor() {
+    public Major getMajor() {
         return major;
     }
 
@@ -122,7 +127,7 @@ public class Student {
      * 
      * @return the student's region
      */
-    public REGION getRegion() {
+    public Region getRegion() {
         return region;
     }
 
@@ -131,7 +136,7 @@ public class Student {
      * 
      * @return the student's hobby
      */
-    public HOBBY getHobby() {
+    public Hobby getHobby() {
         return hobby;
     }
 

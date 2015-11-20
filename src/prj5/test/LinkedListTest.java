@@ -5,28 +5,28 @@ import java.util.NoSuchElementException;
 import prj5.*;
 
 /**
+ * Test the LinkedList class.
+ * 
+ * @author Alec Alderman (ama2106)
+ * @author Julian Davila (jaydee1)
  * @author Matthew Scanland (mks2752)
- * @version 11.18.2015
- *
+ * @version 2015.11.16
  */
-public class LinkedListTest extends student.TestCase
-{
+public class LinkedListTest extends student.TestCase {
     private LinkedList<String> list;
     private Iterator<String> iterator;
 
     /**
      * sets up for testing
      */
-    public void setUp()
-    {
+    public void setUp() {
         list = new LinkedList<String>();
     }
 
     /**
      * tests the add method that adds to the end of the list
      */
-    public void testAdd()
-    {
+    public void testAdd() {
         list.add("h");
         list.add("i");
         assertTrue(list.get(0).equals("h"));
@@ -38,8 +38,7 @@ public class LinkedListTest extends student.TestCase
     /**
      * tests the add method with index as parameter
      */
-    public void testAddWithIndex()
-    {
+    public void testAddWithIndex() {
         list.add(0, "o");
         list.add(0, "r");
         list.add(2, "e");
@@ -50,12 +49,10 @@ public class LinkedListTest extends student.TestCase
         assertTrue(list.get(3).equals("e"));
 
         Exception thrown = null;
-        try
-        {
+        try {
             list.add(12, "exception");
         }
-        catch (Exception e)
-        {
+        catch (Exception e) {
             thrown = e;
         }
 
@@ -66,8 +63,7 @@ public class LinkedListTest extends student.TestCase
     /**
      * tests the get function
      */
-    public void testGet()
-    {
+    public void testGet() {
         list.add("h");
         assertTrue(list.get(0).equals("h"));
         list.add("e");
@@ -76,12 +72,10 @@ public class LinkedListTest extends student.TestCase
 
         Exception thrown = null;
 
-        try
-        {
+        try {
             list.get(-1);
         }
-        catch (Exception e)
-        {
+        catch (Exception e) {
             thrown = e;
         }
 
@@ -92,8 +86,7 @@ public class LinkedListTest extends student.TestCase
     /**
      * tests the isEmpty function
      */
-    public void testIsEmpty()
-    {
+    public void testIsEmpty() {
         assertTrue(list.isEmpty());
         list.add("h");
         assertFalse(list.isEmpty());
@@ -102,8 +95,7 @@ public class LinkedListTest extends student.TestCase
     /**
      * tests the size function
      */
-    public void testSize()
-    {
+    public void testSize() {
         assertEquals(list.size(), 0);
         list.add("h");
         list.add("e");
@@ -117,8 +109,7 @@ public class LinkedListTest extends student.TestCase
     /**
      * tests the contains method
      */
-    public void testContains()
-    {
+    public void testContains() {
         list.add("h");
         list.add("e");
         assertTrue(list.contains("e"));
@@ -130,8 +121,7 @@ public class LinkedListTest extends student.TestCase
     /**
      * tests the remove method with an integer as a parameter
      */
-    public void testRemoveIndex()
-    {
+    public void testRemoveIndex() {
         list.add("h");
         list.add("e");
         list.add("l");
@@ -146,8 +136,7 @@ public class LinkedListTest extends student.TestCase
     /**
      * tests the remove method with entry parameter
      */
-    public void testRemoveEntry()
-    {
+    public void testRemoveEntry() {
         list.add("h");
         list.add("e");
         list.add("l");
@@ -161,8 +150,7 @@ public class LinkedListTest extends student.TestCase
     /**
      * tests the clear method
      */
-    public void testClear()
-    {
+    public void testClear() {
         list.add("h");
         list.clear();
         assertTrue(list.isEmpty());
@@ -171,8 +159,7 @@ public class LinkedListTest extends student.TestCase
     /**
      * tests the iterator
      */
-    public void testIterator()
-    {
+    public void testIterator() {
         list.add("h");
         list.add("e");
         list.add("l");
@@ -189,12 +176,10 @@ public class LinkedListTest extends student.TestCase
         iterator.remove();
         assertEquals(list.size(), 3);
 
-        try
-        {
+        try {
             iterator.remove();
         }
-        catch (Exception e)
-        {
+        catch (Exception e) {
             thrown = e;
         }
 
@@ -205,12 +190,10 @@ public class LinkedListTest extends student.TestCase
         assertTrue(iterator.next().equals("o"));
 
         thrown = null;
-        try
-        {
+        try {
             iterator.next();
         }
-        catch (Exception e)
-        {
+        catch (Exception e) {
             thrown = e;
         }
         assertNotNull(thrown);

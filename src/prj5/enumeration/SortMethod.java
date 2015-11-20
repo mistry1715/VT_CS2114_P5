@@ -8,7 +8,7 @@ package prj5.enumeration;
  * @author Matthew Scanland (mks2752)
  * @version 2015.11.16
  */
-public enum SORT_METHOD {
+public enum SortMethod {
     GENRE,
     YEAR,
     ARTIST,

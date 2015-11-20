@@ -4,11 +4,22 @@ import prj5.*;
 // import prj5.comparators.*;
 // import prj5.enumeration.*;
 
+/**
+ * Test the Song class.
+ * 
+ * @author Alec Alderman (ama2106)
+ * @author Julian Davila (jaydee1)
+ * @author Matthew Scanland (mks2752)
+ * @version 2015.11.16
+ */
 public class SongTest extends student.TestCase {
     private Song song1;
     private Song song2;
     private Song song3;
 
+    /**
+     * Set up the testing environment.
+     */
     public void setUp() {
         song1 = new Song("The Ocean", "Led Zeppelin", "rock", 1973);
         song2 = new Song("Gypsy Eyes", "The Jimi Hendrix Experience",

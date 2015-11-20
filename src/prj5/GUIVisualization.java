@@ -3,13 +3,20 @@ package prj5;
 import CS2114.Button;
 import CS2114.Window;
 import CS2114.WindowSide;
-import prj5.enumeration.SORT_METHOD;
+import prj5.enumeration.SortMethod;
 
-public class GUIVisualization 
-{
+/**
+ * TODO
+ * 
+ * @author Alec Alderman (ama2106)
+ * @author Julian Davila (jaydee1)
+ * @author Matthew Scanland (mks2752)
+ * @version 2015.11.16
+ */
+public class GUIVisualization {
     private Window window;
     private int position;
-    private SORT_METHOD sortedBy;
+    private SortMethod sortedBy;
     private Button previous;
     private Button next;
     private Button title;
@@ -20,14 +27,18 @@ public class GUIVisualization
     private Button major;
     private Button region;
     private Button quit;
-    
+
     private LinkedList<GUIGlyph> glyphs;
-    
-    public GUIVisualization(LinkedList<GUIGlyph> glyphs) 
-    {
+
+    /**
+     * TODO
+     * 
+     * @param glyphs -
+     */
+    public GUIVisualization(LinkedList<GUIGlyph> glyphs) {
         window = new Window("Data Visualization ama2106 jaydee1 mks2752");
         position = 0;
-        sortedBy = SORT_METHOD.UNSORTED;
+        sortedBy = SortMethod.UNSORTED;
         previous = new Button("<< Previous");
         next = new Button("Next >>");
         title = new Button("Sort By Song Title");
@@ -38,7 +49,7 @@ public class GUIVisualization
         region = new Button("Represent Region");
         major = new Button("Represent Major");
         quit = new Button("Quit");
-        
+
         previous.onClick(this);
         next.onClick(this);
         title.onClick(this);
@@ -49,7 +60,7 @@ public class GUIVisualization
         region.onClick(this);
         major.onClick(this);
         quit.onClick(this);
-        
+
         window.addButton(previous, WindowSide.NORTH);
         window.addButton(artist, WindowSide.NORTH);
         window.addButton(title, WindowSide.NORTH);
@@ -60,10 +71,10 @@ public class GUIVisualization
         window.addButton(major, WindowSide.SOUTH);
         window.addButton(region, WindowSide.SOUTH);
         window.addButton(quit, WindowSide.SOUTH);
-        
+
         this.glyphs = glyphs;
-        
-        sortedBy = SORT_METHOD.TITLE;
+
+        sortedBy = SortMethod.TITLE;
     }
 
 }

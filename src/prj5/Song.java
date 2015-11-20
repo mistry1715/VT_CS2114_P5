@@ -3,7 +3,9 @@ package prj5;
 import prj5.comparators.*;
 
 /**
- * TODO
+ * Each Song object contains the data given by a text file of songs separated
+ * into individual songs by title. The title, artist, genre, and year are stored
+ * to be used later when sorting student responses into their respective lists.
  * 
  * @author Alec Alderman (ama2106)
  * @author Julian Davila (jaydee1)
