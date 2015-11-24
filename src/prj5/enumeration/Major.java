@@ -9,8 +9,20 @@ package prj5.enumeration;
  * @version 2015.11.16
  */
 public enum Major {
+    /**
+     * Computer Science major.
+     */
     CS,
+    /**
+     * Math or CMDA major.
+     */
     MATH,
+    /**
+     * Other engineering major.
+     */
     EGR,
+    /**
+     * Other major.
+     */
     OTHER;
 }

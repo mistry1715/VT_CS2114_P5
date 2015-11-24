@@ -1,18 +1,21 @@
 package prj5.test;
 
-import prj5.*;
+import prj5.Song;
+
 // import prj5.comparators.*;
+
 // import prj5.enumeration.*;
 
 /**
- * Test the Song class.
- * 
- * @author Alec Alderman (ama2106)
+ * Tests the song class.
  * @author Julian Davila (jaydee1)
+ * @author Alec Alderman (ama2106)
  * @author Matthew Scanland (mks2752)
- * @version 2015.11.16
+ * @version 2015.11.20
+ *
  */
-public class SongTest extends student.TestCase {
+public class SongTest extends student.TestCase
+{
     private Song song1;
     private Song song2;
     private Song song3;
@@ -20,7 +23,8 @@ public class SongTest extends student.TestCase {
     /**
      * Set up the testing environment.
      */
-    public void setUp() {
+    public void setUp()
+    {
         song1 = new Song("The Ocean", "Led Zeppelin", "rock", 1973);
         song2 = new Song("Gypsy Eyes", "The Jimi Hendrix Experience",
                 "psychedelic rock", 1968);
@@ -33,7 +37,8 @@ public class SongTest extends student.TestCase {
     /**
      * Test the constructor.
      */
-    public void testConstructor() {
+    public void testConstructor()
+    {
         assertNotNull(song1);
         assertNotNull(song2);
         assertNotNull(song3);
@@ -53,24 +58,111 @@ public class SongTest extends student.TestCase {
         assertNotNull(song1.getYear());
         assertNotNull(song2.getYear());
         assertNotNull(song3.getYear());
+
+        Exception thrown = null;
+
+        try
+        {
+            new Song("", "a", "g", 0);
+        }
+        catch (Exception e)
+        {
+            thrown = e;
+        }
+
+        assertNotNull(thrown);
+        assertTrue(thrown instanceof IllegalArgumentException);
+
+        thrown = null;
+
+        try
+        {
+            new Song("a", "", "g", 0);
+        }
+        catch (Exception e)
+        {
+            thrown = e;
+        }
+
+        assertNotNull(thrown);
+        assertTrue(thrown instanceof IllegalArgumentException);
+
+        thrown = null;
+
+        try
+        {
+            new Song("a", "a", "", 0);
+        }
+        catch (Exception e)
+        {
+            thrown = e;
+        }
+
+        assertNotNull(thrown);
+        assertTrue(thrown instanceof IllegalArgumentException);
+
+        thrown = null;
+
+        try
+        {
+            new Song("a", "a", "g", -1);
+        }
+        catch (Exception e)
+        {
+            thrown = e;
+        }
+
+        assertNotNull(thrown);
+        assertTrue(thrown instanceof IllegalArgumentException);
     }
 
     /**
      * Test the method compareTo().
      */
-    public void testCompareTo() {
+    public void testCompareTo()
+    {
         assertEquals(13, song1.compareTo(song2));
         assertEquals(-16, song2.compareTo(song3));
         assertEquals(0, song1.compareTo(song1));
         assertEquals(3, song3.compareTo(song1));
+
+        Exception thrown = null;
+
+        try
+        {
+            Song test = null;
+            song1.compareTo(test);
+        }
+        catch (Exception e)
+        {
+            thrown = e;
+        }
+
+        assertNotNull(thrown);
+        assertTrue(thrown instanceof IllegalArgumentException);
+
+        thrown = null;
+
+        try
+        {
+            Object test = new Object();
+            song1.compareTo(test);
+        }
+        catch (Exception e)
+        {
+            thrown = e;
+        }
+
+        assertNotNull(thrown);
+        assertTrue(thrown instanceof IllegalArgumentException);
     }
 
     /**
      * Test the method equals().
      */
-    public void testEquals() {
+    public void testEquals()
+    {
         assertFalse(song1.equals(song2));
-        assertFalse(song1.equals(null));
         Song nullSong = null;
         assertFalse(song1.equals(nullSong));
         assertTrue(song1.equals(song1));
@@ -78,15 +170,20 @@ public class SongTest extends student.TestCase {
         Song similarSong = new Song("The Ocean", "Led Zeppelin", "rock", 1973);
         assertTrue(song1.equals(doppleSong));
         assertTrue(song1.equals(similarSong));
+        assertFalse(song1.equals(new Object()));
+        Song s = new Song("a", "a", "a", 0);
+        assertFalse(song1.equals(s));
     }
 
     /**
      * Test the method toString().
      */
-    public void testToString() {
+    public void testToString()
+    {
         assertEquals("[The Ocean,Led Zeppelin,rock,1973]", song1.toString());
         assertEquals(
-                "[Gypsy Eyes,The Jimi Hendrix Experience,psychedelic rock,1968]",
+                "[Gypsy Eyes,The Jimi Hendrix Experience,"
+                + "psychedelic rock,1968]",
                 song2.toString());
         assertEquals("[Warlocks,Red Hot Chili Peppers,funk rock,2006]",
                 song3.toString());
@@ -95,7 +192,8 @@ public class SongTest extends student.TestCase {
     /**
      * Test the getter methods.
      */
-    public void testGetters() {
+    public void testGetters()
+    {
         assertEquals("The Ocean", song1.getTitle());
         assertEquals("Gypsy Eyes", song2.getTitle());
         assertEquals("Warlocks", song3.getTitle());

@@ -237,6 +237,8 @@ public class Glyph {
                 case MUSIC:
                     totalByCat[3]--;
                     break;
+                default:
+                    break;
             }
         }
 

@@ -9,12 +9,36 @@ package prj5.enumeration;
  * @version 2015.11.16
  */
 public enum SortMethod {
+    /**
+     * Sort by genre.
+     */
     GENRE,
+    /**
+     * Sort by year.
+     */
     YEAR,
+    /**
+     * Sort by artist.
+     */
     ARTIST,
+    /**
+     * Sort by title.
+     */
     TITLE,
+    /**
+     * Sort by region.
+     */
     REGION,
+    /**
+     * Sort by hobby.
+     */
     HOBBY,
+    /**
+     * Sort by major.
+     */
     MAJOR,
+    /**
+     * Unsorted.
+     */
     UNSORTED;
 }

@@ -27,7 +27,9 @@ public class StudentTest extends student.TestCase {
     }
 
     // Begin testing here
-
+    /**
+     * Test the constructor.
+     */
     public void testConstructor() {
         assertNotNull(student1);
         assertNotNull(student2);
@@ -50,7 +52,32 @@ public class StudentTest extends student.TestCase {
      * Test the method compareTo().
      */
     public void testCompareTo() {
-        // assertEquals(0, student1.compareTo(student2));
+        assertEquals(-2, student1.compareTo(student2));
+        assertEquals(1, student2.compareTo(student3));
+        assertEquals(1, student3.compareTo(student1));
+        assertEquals(0, student1.compareTo(student1));
+        Student nullStudent = null;
+        Exception exception = null;
+        try {
+            student1.compareTo(nullStudent);
+        }
+        catch (IllegalArgumentException e) {
+            exception = e;
+        }
+        assertNotNull(exception);
+        Student doppleStudent = student1;
+        assertEquals(0, student1.compareTo(doppleStudent));
+        Student similarStudent = new Student(Major.CS, Region.NE, Hobby.ART);
+        assertEquals(0, student1.compareTo(similarStudent));
+        Object notAStudent = new Object();
+        exception = null;
+        try {
+            student1.compareTo(notAStudent);
+        }
+        catch (IllegalArgumentException e) {
+            exception = e;
+        }
+        assertNotNull(exception);
     }
 
     /**
@@ -58,7 +85,6 @@ public class StudentTest extends student.TestCase {
      */
     public void testEquals() {
         assertFalse(student1.equals(student2));
-        assertFalse(student1.equals(null));
         Student nullStudent = null;
         assertFalse(student1.equals(nullStudent));
         assertTrue(student1.equals(student1));
@@ -66,6 +92,9 @@ public class StudentTest extends student.TestCase {
         Student similarStudent = new Student(Major.CS, Region.NE, Hobby.ART);
         assertTrue(student1.equals(doppleStudent));
         assertTrue(student1.equals(similarStudent));
+        Object notAStudent = new Object();
+        assertFalse(student1.equals(notAStudent));
+        
     }
 
     /**

@@ -9,8 +9,20 @@ package prj5.enumeration;
  * @version 2015.11.16
  */
 public enum Hobby {
+    /**
+     * Hobby of reading.
+     */
     READ,
+    /**
+     * Hobby of art.
+     */
     ART,
+    /**
+     * Hobby of sports.
+     */
     SPORTS,
+    /**
+     * Hobby of music.
+     */
     MUSIC;
 }

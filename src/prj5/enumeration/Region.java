@@ -9,8 +9,20 @@ package prj5.enumeration;
  * @version 2015.11.16
  */
 public enum Region {
+    /**
+     * Northeast region.
+     */
     NE,
+    /**
+     * Southeast region.
+     */
     SE,
+    /**
+     * Other region in the US.
+     */
     US,
+    /**
+     * Outside of US.
+     */
     OUT;
 }
