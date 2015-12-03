@@ -2,11 +2,7 @@ package prj5;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.Comparator;
 import java.util.Scanner;
-
-import prj5.comparators.GenreComparator;
-import prj5.comparators.TitleComparator;
 import prj5.enumeration.*;
 
 /**
@@ -20,7 +16,6 @@ import prj5.enumeration.*;
  * @version 2015.11.16
  */
 public class Input {
-    // Temporary glyph list
     private static LinkedList<Glyph> data = new LinkedList<Glyph>();
 
     /**
@@ -37,105 +32,13 @@ public class Input {
             readIn(new File(args[1]), new File(args[0]));
         }
         else {
-            readIn(new File("SongListNoGenreRepeats.csv"),
-                    new File("MusicSurveyDataNoGenreRepeats.csv"));
+            readIn(new File("SongList.csv"), new File("MusicSurveyData.csv"));
         }
 
-        if (args.length == 0) {
-            sort(new GenreComparator());
 
-            for (Glyph g : data) {
-                g.sortBy(SortMethod.HOBBY);
-                g.printOutData(); // Print the data.
-                System.out.println(""); // Print an empty line.
-            }
 
-            sort(new TitleComparator());
-
-            for (Glyph g : data) {
-                g.printOutData(); // Print the data.
-                System.out.println(""); // Print an empty line.
-            }
-        }
-        else
-            if (args[0].equals("MusicSurveyDataTest1.csv")) {
-                sort(new GenreComparator());
-
-                for (Glyph g : data) {
-                    g.sortBy(SortMethod.HOBBY);
-                    g.printOutData(); // Print the data.
-                    System.out.println(""); // Print an empty line.
-                }
-
-                sort(new TitleComparator());
-
-                for (Glyph g : data) {
-                    g.printOutData(); // Print the data.
-                    System.out.println(""); // Print an empty line.
-                }
-            }
-            else
-                if (args[0].equals("MusicSurveyDataNoGenreRepeats.csv")) {
-                    sort(new GenreComparator());
-
-                    for (Glyph g : data) {
-                        g.sortBy(SortMethod.HOBBY);
-                        g.printOutData(); // Print the data.
-                        System.out.println(""); // Print an empty line.
-                    }
-
-                    sort(new TitleComparator());
-
-                    for (Glyph g : data) {
-                        g.printOutData(); // Print the data.
-                        System.out.println(""); // Print an empty line.
-                    }
-                }
-                else
-                    if (args[0].equals("MusicSurveyDataTest2.csv")) {
-                        for (Glyph g : data) {
-                            g.sortBy(SortMethod.HOBBY);
-                            g.printOutData(); // Print the data.
-                            System.out.println(""); // Print an empty line.
-                        }
-
-                        sort(new GenreComparator());
-
-                        for (Glyph g : data) {
-                            g.printOutData(); // Print the data.
-                            System.out.println(""); // Print an empty line.
-                        }
-                    }
-    }
-
-    // TODO REMOVE
-    /**
-     * Sort the LinkedList of glyphs using the given comparator.
-     * 
-     * @param com - pass the given comparator to be used in the sorting
-     */
-    private static void sort(Comparator<Song> com) {
-        LinkedList<Glyph> sorted = new LinkedList<Glyph>();
-        sorted.add(data.remove(0));
-        while (!data.isEmpty()) {
-            int max = sorted.size();
-            Glyph song = data.remove(0);
-            int i = 0;
-            for (Glyph compare : sorted) {
-                if (com.compare(song.getSong(), compare.getSong()) <= 0) {
-                    sorted.add(i, song);
-                    break;
-                }
-                i++;
-                if (i == max) {
-                    sorted.add(song);
-                    break;
-                }
-            }
-        }
-
-        data = sorted;
-    }
+        new GUIVisualization(data);
+    } // end main
 
     /**
      * Read in the given files containing song data and student response data.
@@ -145,7 +48,7 @@ public class Input {
      */
     public static void readIn(File songs, File students) {
         readInStudents(students, readInSongs(songs));
-    }
+    } // end readIn
 
     /**
      * When a valid text file containing song data is passed in, create a new
@@ -187,7 +90,7 @@ public class Input {
         scan.close();
 
         return glyphs;
-    }
+    } // end readInSongs
 
     /**
      * When a valid text file containing student response data is passed in,
@@ -227,57 +130,57 @@ public class Input {
                 Major major = null;
 
                 switch (details[2]) {
-                case "Math or CMDA":
-                    major = Major.MATH;
-                    break;
-                case "Computer Science":
-                    major = Major.CS;
-                    break;
-                case "Other Engineering":
-                    major = Major.EGR;
-                    break;
-                case "Other":
-                    major = Major.OTHER;
-                    break;
-                default:
-                    doNotCreate = true;
-                    break;
+                    case "Math or CMDA":
+                        major = Major.MATH;
+                        break;
+                    case "Computer Science":
+                        major = Major.CS;
+                        break;
+                    case "Other Engineering":
+                        major = Major.EGR;
+                        break;
+                    case "Other":
+                        major = Major.OTHER;
+                        break;
+                    default:
+                        doNotCreate = true;
+                        break;
                 }
 
                 switch (details[3]) {
-                case "Southeast":
-                    region = Region.SE;
-                    break;
-                case "Northeast":
-                    region = Region.NE;
-                    break;
-                case "United States (other than Southeast or Northwest)":
-                    region = Region.US;
-                    break;
-                case "Outside of United States":
-                    region = Region.OUT;
-                    break;
-                default:
-                    doNotCreate = true;
-                    break;
+                    case "Southeast":
+                        region = Region.SE;
+                        break;
+                    case "Northeast":
+                        region = Region.NE;
+                        break;
+                    case "United States (other than Southeast or Northwest)":
+                        region = Region.US;
+                        break;
+                    case "Outside of United States":
+                        region = Region.OUT;
+                        break;
+                    default:
+                        doNotCreate = true;
+                        break;
                 }
 
                 switch (details[4]) {
-                case "sports":
-                    hobby = Hobby.SPORTS;
-                    break;
-                case "music":
-                    hobby = Hobby.MUSIC;
-                    break;
-                case "reading":
-                    hobby = Hobby.READ;
-                    break;
-                case "art":
-                    hobby = Hobby.ART;
-                    break;
-                default:
-                    doNotCreate = true;
-                    break;
+                    case "sports":
+                        hobby = Hobby.SPORTS;
+                        break;
+                    case "music":
+                        hobby = Hobby.MUSIC;
+                        break;
+                    case "reading":
+                        hobby = Hobby.READ;
+                        break;
+                    case "art":
+                        hobby = Hobby.ART;
+                        break;
+                    default:
+                        doNotCreate = true;
+                        break;
                 }
                 // If it is not flagged as not a student
                 if (!doNotCreate) {
@@ -304,17 +207,16 @@ public class Input {
                             if (sHeard.equals("Yes")) {
                                 glyph.addHeard(student);
                             }
-                            else
-                                if (!sHeard.equals("No")) {
-                                    glyph.addIgnoredHeard(student);
-                                }
+                            else if (!sHeard.equals("No")) {
+                                glyph.addIgnoredHeard(student);
+                            }
+
                             if (sLiked.equals("Yes")) {
                                 glyph.addLiked(student);
                             }
-                            else
-                                if (!sLiked.equals("No")) {
-                                    glyph.addIgnoredLiked(student);
-                                }
+                            else if (!sLiked.equals("No")) {
+                                glyph.addIgnoredLiked(student);
+                            }
                         }
                         else {
                             glyph.addIgnoredLiked(student);
@@ -329,10 +231,6 @@ public class Input {
 
         scan.close();
 
-        int size = Student.students.size();
-
-        String[] dummy = line.split(",");
-
         data = songs;
-    }
+    } // end readInStudents
 }

@@ -55,21 +55,7 @@ public class Student {
 
         Student other = (Student) obj;
 
-        int diff = 0;
-
-        if (diff == 0) {
-            diff = new MajorComparator().compare(this, other);
-        }
-
-        if (diff == 0) {
-            diff = new RegionComparator().compare(this, other);
-        }
-
-        if (diff == 0) {
-            diff = new HobbyComparator().compare(this, other);
-        }
-
-        return diff;
+        return 0;
     }
 
     /**

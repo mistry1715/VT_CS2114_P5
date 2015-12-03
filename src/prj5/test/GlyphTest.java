@@ -50,18 +50,4 @@ public class GlyphTest extends student.TestCase {
         Student.students.add(new Student(Major.CS, Region.NE, Hobby.SPORTS));
         Student.students.add(new Student(Major.CS, Region.NE, Hobby.MUSIC));
     }
-
-    /**
-     * Test the output.
-     */
-    public void testOutput() {
-        glyph.sortBy(SortMethod.HOBBY);
-        glyph.printOutData();
-
-        String s = "Song Title: title\n" + "Song Artist: artist\n"
-                + "Song Genre: genre\n" + "Song Year: 0\n" + "Heard\n"
-                + "reading:100 art:100 sports:100 music:100\n" + "Likes\n"
-                + "reading:100 art:100 sports:100 music:100\n";
-        assertFuzzyEquals(s, systemOut().getHistory());
-    }
 }
